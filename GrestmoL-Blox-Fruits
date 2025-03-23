@@ -1,4 +1,4 @@
--- [[
+--[[
 
   ____  ______ _______ _______ ______ _____    _______ _    _          _   _   _   _ ______ _    _ _____   ____  _   _  __   __
  |  _ \|  ____|__   __|__   __|  ____|  __ \  |__   __| |  | |   /\   | \ | | | \ | |  ____| |  | |  __ \ / __ \| \ | | \ \ / /
@@ -10,87 +10,56 @@
                                                                                                                                
 ]]
 
--- Si el script_key ya está definido, salimos y cargamos el siguiente script de manera segura
-if script_key then
-    return loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/84540224acb21db4b7ffadb76a63fefd.lua"))();
-end;
+if script_key then return loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/84540224acb21db4b7ffadb76a63fefd.lua"))(); end;
 
--- Cargar la librería de la GUI
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/DarnelGabriel/grestmolbloxfruits/refs/heads/main/GrestmoL"))();
+local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/3345-c-a-t-s-u-s/Kncrypt/refs/heads/main/lib/AuthLib.lua'))();
 
--- Crear la ventana de la GUI con el título 'Key System'
 local win = lib.new('Key System');
 
--- Botón para obtener la clave
-win.AddButton('Get Key', function()
-    -- Copiar el enlace de la clave al portapapeles
+win.AddButton('Get Key',function()
     (setclipboard or toclipboard)('https://ads.luarmor.net/get_key?for=KNClinkvertise-NyZRHgKYOfty');
 end);
 
--- Botón para iniciar sesión (Login)
-win.AddButton('Login', function(a)
-    -- Cerrar la ventana de login después de 1 segundo
-    task.delay(1, function() 
-        a.Close(); 
-    end);
-
-    -- Obtener la clave proporcionada en el campo de texto
-    script_key = a.Text;
-
-    -- Verificar que la clave no esté vacía antes de continuar
-    if script_key and script_key ~= "" then
-        -- Intentamos cargar el script de GrestmoL
-        local success, err = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/DarnelGabriel/grestmolbloxfruits/refs/heads/main/GrestmoL"))();
-        end)
-
-        -- Si ocurre un error al cargar el script, lo mostramos en la consola
-        if not success then
-            print("Error al cargar el script de GrestmoL: " .. err);
-        else
-            print("GrestmoL cargado correctamente.");
-        end
-    else
-        -- Si la clave es inválida (vacía o nula), mostrar un mensaje en la consola
-        print("Error: La clave proporcionada es inválida.");
-    end
+win.AddButton('Login',function(a)
+    task.delay(1,function() a.Close(); end);
+    
+    script_key=a.Text;
+    
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/84540224acb21db4b7ffadb76a63fefd.lua"))();
 end);
 
--- Botón para redirigir al servidor de Discord
-win.AddButton('Discord', function()
-    (setclipboard or toclipboard)('https://discord.gg/kncrypthub');
+win.AddButton('Discord',function()
+    (setclipboard or toclipboard)('https://discord.gg/VBDR8sKd');
 
-    -- Enviar invitación a Discord si la función 'request' está disponible
     if request then
-        request({
-            Url = 'http://127.0.0.1:6463/rpc?v=1',
-            Method = 'POST',
-            Headers = {
-                ['Content-Type'] = 'application/json',
-                Origin = 'https://discord.com'
-            },
-            Body = game:GetService('HttpService'):JSONEncode({
-                cmd = 'INVITE_BROWSER',
-                nonce = game:GetService('HttpService'):GenerateGUID(false),
-                args = {code = 'wPaQZwhMHy'}
-            })
-        })
-    end
+			request({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = game:GetService('HttpService'):JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = game:GetService('HttpService'):GenerateGUID(false),
+					args = {code = 'VBDR8sKd'}
+				})
+			})
+	end
 end);
 
--- Enviar invitación a Discord nuevamente desde esta sección
 if request then
-    request({
-        Url = 'http://127.0.0.1:6463/rpc?v=1',
-        Method = 'POST',
-        Headers = {
-            ['Content-Type'] = 'application/json',
-            Origin = 'https://discord.com'
-        },
-        Body = game:GetService('HttpService'):JSONEncode({
-            cmd = 'INVITE_BROWSER',
-            nonce = game:GetService('HttpService'):GenerateGUID(false),
-            args = {code = 'wPaQZwhMHy'}
-        })
-    })
-end;
+			request({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = game:GetService('HttpService'):JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = game:GetService('HttpService'):GenerateGUID(false),
+					args = {code = 'VBDR8sKd'}
+				})
+			})
+	end
