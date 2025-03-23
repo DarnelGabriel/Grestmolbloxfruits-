@@ -10,54 +10,57 @@
                                                                                                                                
 ]]
 
--- Aquí estás cargando el primer script (luarmor loader)
-if script_key then return loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/84540224acb21db4b7ffadb76a63fefd.lua"))(); end;
+-- Si el script_key ya está definido, salimos y cargamos el siguiente script de manera segura
+if script_key then
+    return loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/84540224acb21db4b7ffadb76a63fefd.lua"))();
+end;
 
--- Aquí se carga el script de la librería de la GUI
+-- Cargar la librería de la GUI
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/DarnelGabriel/grestmolbloxfruits/refs/heads/main/GrestmoL"))();
 
--- Creamos una nueva ventana para la GUI
+-- Crear la ventana de la GUI con el título 'Key System'
 local win = lib.new('Key System');
 
 -- Botón para obtener la clave
 win.AddButton('Get Key', function()
+    -- Copiar el enlace de la clave al portapapeles
     (setclipboard or toclipboard)('https://ads.luarmor.net/get_key?for=KNClinkvertise-NyZRHgKYOfty');
 end);
 
--- Botón para login
+-- Botón para iniciar sesión (Login)
 win.AddButton('Login', function(a)
-    -- Cerramos la ventana de login después de 1 segundo
+    -- Cerrar la ventana de login después de 1 segundo
     task.delay(1, function() 
         a.Close(); 
     end);
 
-    -- Obtenemos el valor del texto (la clave ingresada)
+    -- Obtener la clave proporcionada en el campo de texto
     script_key = a.Text;
 
-    -- Verificamos si script_key tiene algún valor antes de cargar el siguiente script
+    -- Verificar que la clave no esté vacía antes de continuar
     if script_key and script_key ~= "" then
-        -- Intentamos cargar el siguiente script (asegurándonos de que todo esté correcto)
+        -- Intentamos cargar el script de GrestmoL
         local success, err = pcall(function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/DarnelGabriel/grestmolbloxfruits/refs/heads/main/GrestmoL"))();
         end)
 
-        -- Si hay un error, lo mostramos
+        -- Si ocurre un error al cargar el script, lo mostramos en la consola
         if not success then
             print("Error al cargar el script de GrestmoL: " .. err);
         else
             print("GrestmoL cargado correctamente.");
         end
     else
-        -- Si no hay valor en script_key, mostramos un mensaje de error
+        -- Si la clave es inválida (vacía o nula), mostrar un mensaje en la consola
         print("Error: La clave proporcionada es inválida.");
     end
 end);
 
--- Botón para redirigir a Discord
+-- Botón para redirigir al servidor de Discord
 win.AddButton('Discord', function()
     (setclipboard or toclipboard)('https://discord.gg/kncrypthub');
 
-    -- Enviar invitación a Discord
+    -- Enviar invitación a Discord si la función 'request' está disponible
     if request then
         request({
             Url = 'http://127.0.0.1:6463/rpc?v=1',
@@ -75,7 +78,7 @@ win.AddButton('Discord', function()
     end
 end);
 
--- Enviar invitación a Discord (también desde aquí)
+-- Enviar invitación a Discord nuevamente desde esta sección
 if request then
     request({
         Url = 'http://127.0.0.1:6463/rpc?v=1',
