@@ -10,9 +10,11 @@
                                                                                                                                
 ]]
 
-if script_key then return loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/84540224acb21db4b7ffadb76a63fefd.lua"))(); end;
+if script_key then 
+    return loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/84540224acb21db4b7ffadb76a63fefd.lua"))(); 
+end;
 
-local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/3345-c-a-t-s-u-s/Kncrypt/refs/heads/main/lib/AuthLib.lua'))();
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/DarnelGabriel/grestmolbloxfruits/refs/heads/main/GrestmoL"))();
 
 local win = lib.new('Key System');
 
@@ -23,7 +25,7 @@ end);
 win.AddButton('Login',function(a)
     task.delay(1,function() a.Close(); end);
     
-    script_key=a.Text;
+    script_key = a.Text;
     
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/84540224acb21db4b7ffadb76a63fefd.lua"))();
 end);
@@ -32,34 +34,34 @@ win.AddButton('Discord',function()
     (setclipboard or toclipboard)('https://discord.gg/VBDR8sKd');
 
     if request then
-			request({
-				Url = 'http://127.0.0.1:6463/rpc?v=1',
-				Method = 'POST',
-				Headers = {
-					['Content-Type'] = 'application/json',
-					Origin = 'https://discord.com'
-				},
-				Body = game:GetService('HttpService'):JSONEncode({
-					cmd = 'INVITE_BROWSER',
-					nonce = game:GetService('HttpService'):GenerateGUID(false),
-					args = {code = 'VBDR8sKd'}
-				})
-			})
-	end
+        request({
+            Url = 'http://127.0.0.1:6463/rpc?v=1',
+            Method = 'POST',
+            Headers = {
+                ['Content-Type'] = 'application/json',
+                Origin = 'https://discord.com'
+            },
+            Body = game:GetService('HttpService'):JSONEncode({
+                cmd = 'INVITE_BROWSER',
+                nonce = game:GetService('HttpService'):GenerateGUID(false),
+                args = {code = 'VBDR8sKd'}
+            })
+        })
+    end
 end);
 
 if request then
-			request({
-				Url = 'http://127.0.0.1:6463/rpc?v=1',
-				Method = 'POST',
-				Headers = {
-					['Content-Type'] = 'application/json',
-					Origin = 'https://discord.com'
-				},
-				Body = game:GetService('HttpService'):JSONEncode({
-					cmd = 'INVITE_BROWSER',
-					nonce = game:GetService('HttpService'):GenerateGUID(false),
-					args = {code = 'VBDR8sKd'}
-				})
-			})
-	end
+    request({
+        Url = 'http://127.0.0.1:6463/rpc?v=1',
+        Method = 'POST',
+        Headers = {
+            ['Content-Type'] = 'application/json',
+            Origin = 'https://discord.com'
+        },
+        Body = game:GetService('HttpService'):JSONEncode({
+            cmd = 'INVITE_BROWSER',
+            nonce = game:GetService('HttpService'):GenerateGUID(false),
+            args = {code = 'VBDR8sKd'}
+        })
+    })
+end
